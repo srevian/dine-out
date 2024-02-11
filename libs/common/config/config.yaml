@@ -1,0 +1,13 @@
+development:
+  db:
+    dialect: 'mysql'
+    host: 'localhost'
+    port: 3306
+    username: 'root'
+    password: 'password'
+    database: 'test-db'
+    autoLoadModels: true
+    synchronize: true
+  http:
+    host: 'localhost'
+    port: 8080
