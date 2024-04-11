@@ -9,7 +9,7 @@ import { ConfigModule } from '@nestjs/config';
   exports: [CommonService, PrismaModule],
   imports: [PrismaModule, 
     ConfigModule.forRoot({
-      isGlobal: true
+      isGlobal: true // this help to use the service across other modules
     }),
   ],
 })

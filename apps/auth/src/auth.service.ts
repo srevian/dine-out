@@ -45,7 +45,7 @@ export class AuthService {
       if (error instanceof PrismaClientKnownRequestError) {
         // The .code property can be accessed in a type-safe manner
         if (error.code === 'P2002') {
-          throw new ForbiddenException(error)
+          throw new ForbiddenException('User already exists')
         }
       }
       throw new BadRequestException(error)

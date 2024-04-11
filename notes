@@ -1,0 +1,10 @@
+https://github.com/prisma/prisma/issues/4571#issuecomment-754650296
+
+npx prisma db push instead prisma migrate
+
+configure another db for shadow db in docker compose
+configure in prisma schema and .env
+run both db on container
+run prisma db pull
+run prisma migrate init --name dev
+run prisma migrate deploy //It should create migration.sql file now
