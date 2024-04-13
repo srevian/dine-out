@@ -18,4 +18,6 @@ export class AuthDto {
 
     @IsString()
     lastName: string
+
+    refreshToken: string
 }

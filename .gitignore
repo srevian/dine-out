@@ -3,6 +3,7 @@
 /node_modules
 .env
 /prisma/data
+./github
 
 # Logs
 logs

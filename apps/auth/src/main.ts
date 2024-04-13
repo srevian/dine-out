@@ -1,7 +1,8 @@
-import { NestFactory } from '@nestjs/core';
+import { NestFactory, Reflector } from '@nestjs/core';
 import { AuthModule } from './auth.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
+import { JwtGuard } from '../common/guards';
 
 async function bootstrap() {
   const app = await NestFactory.create(AuthModule);
@@ -17,6 +18,9 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({
     whitelist: true //trim out unnecessary field to log or consider to take them other than defined in DTO
   }))
+
+  // const reflector = new Reflector()
+  // app.useGlobalGuards(new JwtGuard(reflector))
   await app.listen(3000);
 }
 bootstrap();
