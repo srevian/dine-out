@@ -1,4 +1,3 @@
-version: '3.8'
 services:
   mysql:
     image: mysql
@@ -23,3 +22,31 @@ services:
       MYSQL_DATABASE: shadow-db
       MYSQL_USER: user
       MYSQL_PASSWORD: password
+
+  mongo:
+    image: mongo:7.0
+    container_name: dine-out-mongodb
+    command: ["--replSet", "rs0", "--bind_ip_all", "--port", "27017"]
+    environment:
+      MONGO_INITDB_DATABASE: ${MONGO_DATABASE}
+      MONGODB_REPLICA_SET_MODE: primary
+      MONGO_REPLICA_HOST: localhost
+      MONGO_REPLICA_PORT: 27017
+      MONGODB_REPLICA_SET_KEY: replicasetkey123
+    ports:
+      - 27017:27017
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    healthcheck:
+      test: echo "try { rs.status() } catch (err) { rs.initiate({_id:'rs0',members:[{_id:0,host:'host.docker.internal:27017'}]}) }" | mongosh --port 27017 --quiet
+      interval: 5s
+      timeout: 30s
+      start_period: 0s
+      start_interval: 1s
+      retries: 30
+    volumes:
+      - "mongo1_data:/data/db"
+      - "mongo1_config:/data/configdb"
+volumes:
+  mongo1_data:
+  mongo1_config:

@@ -16,7 +16,7 @@ async function bootstrap() {
 
   // use validation pipe to enable validation for auth module
   app.useGlobalPipes(new ValidationPipe({
-    whitelist: true //trim out unnecessary field to log or consider to take them other than defined in DTO
+    // whitelist: true //trim out unnecessary field to log or consider to take them other than defined in DTO
   }))
 
   // const reflector = new Reflector()
